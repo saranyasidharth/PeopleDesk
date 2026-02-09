@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import type { User, UserFormData } from '../types/user.types';
-import { UserApiService } from '../services/userApi';
+import { UserApiWithFallback } from '../services/userApiWithFallback';
 
 export const useUsers = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -12,7 +12,7 @@ export const useUsers = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const data = await UserApiService.getUsers();
+      const data = await UserApiWithFallback.getUsers();
       setUsers(data);
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to fetch users';
@@ -32,7 +32,7 @@ export const useUsers = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const newUser = await UserApiService.createUser(userData);
+      const newUser = await UserApiWithFallback.createUser(userData);
       setUsers((prevUsers) => [...prevUsers, newUser]);
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to create user';
@@ -48,7 +48,7 @@ export const useUsers = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const updatedUser = await UserApiService.updateUser(id, userData);
+      const updatedUser = await UserApiWithFallback.updateUser(id, userData);
       setUsers((prevUsers) =>
         prevUsers.map((user) => (user.id === id ? updatedUser : user))
       );
@@ -66,7 +66,7 @@ export const useUsers = () => {
     setIsLoading(true);
     setError(null);
     try {
-      await UserApiService.deleteUser(id);
+      await UserApiWithFallback.deleteUser(id);
       setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to delete user';

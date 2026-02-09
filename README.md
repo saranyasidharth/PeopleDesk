@@ -33,7 +33,8 @@ A production-ready **User Management Dashboard** built with **React**, **TypeScr
 - ✅ **Form Validation** - Real-time validation using Yup schema
 - ✅ **Loading States** - MUI Skeleton loaders for better UX
 - ✅ **Error Handling** - Comprehensive error messages and toast notifications
-- ✅ **LocalStorage Persistence** - Data persists across browser sessions
+- ✅ **Smart Data Persistence** - JSON-server API with localStorage fallback
+- ✅ **Production Ready** - Works on GitHub Pages with automatic fallback
 
 ### Bonus Features
 - 🔍 **Search** - Filter users by name, email, or phone number
@@ -55,7 +56,9 @@ A production-ready **User Management Dashboard** built with **React**, **TypeScr
 | **SCSS Modules** | Styling |
 | **React Hook Form** | Form management |
 | **Yup** | Schema validation |
-| **LocalStorage API** | Data persistence |
+| **Axios** | HTTP client for API calls |
+| **JSON Server** | Mock REST API (development) |
+| **LocalStorage API** | Data persistence (production fallback) |
 | **GitHub Pages** | Deployment |
 
 ---
@@ -135,21 +138,30 @@ src/
    npm install
    ```
 
-3. **Start development server**
+3. **Start JSON-server (optional - for API mode)**
+   ```bash
+   npm run mock
+   ```
+   This starts the API server on `http://localhost:5000`
+
+4. **Start development server** (in a new terminal)
    ```bash
    npm run dev
    ```
 
-4. **Open in browser**
+5. **Open in browser**
    ```
    http://localhost:5173
    ```
+
+> **Note:** If you skip step 3, the app will automatically use localStorage fallback mode.
 
 ### Available Scripts
 
 | Command | Description |
 |---------|-------------|
 | `npm run dev` | Start development server |
+| `npm run mock` | Start JSON-server API (port 5000) |
 | `npm run build` | Build for production |
 | `npm run preview` | Preview production build |
 | `npm run lint` | Run ESLint |
@@ -243,6 +255,59 @@ export const userValidationSchema: yup.ObjectSchema<UserFormData> = yup.object()
 - ✅ Apply validation rules
 - ✅ Display in the table
 - ✅ Save to localStorage
+
+---
+
+## 🔌 API Integration
+
+### Smart Fallback System
+
+The app uses a **dual-mode architecture** that works both locally and in production:
+
+#### Development Mode (with JSON-server)
+```bash
+npm run mock  # Start API server
+npm run dev   # Start app
+```
+- Uses real REST API at `localhost:5000`
+- Data stored in `db.json`
+- Full CRUD operations via HTTP
+
+#### Production Mode (GitHub Pages)
+```bash
+npm run deploy
+```
+- Automatically detects API unavailability
+- Falls back to localStorage
+- Same functionality, different storage
+
+### How It Works
+
+```
+App loads → Check API availability (2s timeout)
+  ↓
+  ├─ API Available → Use JSON-server
+  └─ API Unavailable → Use localStorage fallback
+```
+
+**Console Messages:**
+- ✅ `API server available - using JSON-server` (Dev)
+- ⚠️ `API server unavailable - using localStorage fallback` (Production)
+
+### API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/users` | Fetch all users |
+| POST | `/users` | Create user |
+| PUT | `/users/:id` | Update user |
+| DELETE | `/users/:id` | Delete user |
+
+### Documentation
+
+- 📖 **[API_INTEGRATION.md](./API_INTEGRATION.md)** - Complete API guide
+- 📖 **[DEPLOYMENT.md](./DEPLOYMENT.md)** - Deployment instructions
+- 📖 **[QUICK_START.md](./QUICK_START.md)** - Quick reference
 
 ---
 
