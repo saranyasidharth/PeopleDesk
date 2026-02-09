@@ -1,0 +1,30 @@
+@use './abstracts/variables' as *;
+@use './abstracts/mixins' as *;
+@use './base/reset';
+
+:root {
+  --background-default: #{$background-light};
+  --background-paper: #{$paper-light};
+  --surface-color: #{$surface-light};
+  --text-primary: #{$text-primary-light};
+  --text-secondary: #{$text-secondary-light};
+  --text-tertiary: #{$text-tertiary-light};
+  --border-color: #{$border-light};
+}
+
+[data-theme='dark'] {
+  --background-default: #{$background-dark};
+  --background-paper: #{$paper-dark};
+  --surface-color: #{$surface-dark};
+  --text-primary: #{$text-primary-dark};
+  --text-secondary: #{$text-secondary-dark};
+  --text-tertiary: #{$text-tertiary-dark};
+  --border-color: #{$border-dark};
+}
+
+body {
+  background-color: var(--background-default);
+  color: var(--text-primary);
+  font-family: $font-family-base;
+  transition: background-color $transition-slow, color $transition-slow;
+}
