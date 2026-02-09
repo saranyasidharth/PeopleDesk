@@ -1,0 +1,28 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.form {
+  @include flex-column;
+  gap: $spacing-lg;
+  padding: $spacing-xs;
+
+  .formFields {
+    @include flex-column;
+    gap: $spacing-md;
+  }
+
+  .formActions {
+    margin-top: $spacing-md;
+    display: flex;
+    gap: $spacing-md;
+    justify-content: flex-end;
+
+    button {
+      min-width: 120px;
+      padding: $spacing-sm $spacing-xl;
+      font-weight: $font-weight-semibold;
+      text-transform: none;
+      letter-spacing: 0.3px;
+    }
+  }
+}
