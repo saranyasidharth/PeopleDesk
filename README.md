@@ -126,8 +126,8 @@ src/
 
 1. **Clone the repository**
    ```bash
- https://github.com/saranyasidharth/PeopleDesk.git
-   cd peopleDesk
+   git clone https://github.com/saranyasidharth/PeopleDesk.git
+   cd PeopleDesk
    ```
 
 2. **Install dependencies**
