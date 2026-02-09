@@ -1,0 +1,60 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.dashboard {
+  min-height: 100vh;
+  background-color: var(--background-default);
+
+  .appBar {
+    background: var(--background-paper) !important;
+    box-shadow: $shadow-sm !important;
+    border-bottom: 1px solid var(--border-color);
+
+    .MuiToolbar-root {
+      padding: $spacing-md $spacing-lg;
+    }
+  }
+
+  .container {
+    padding-top: $spacing-2xl;
+    padding-bottom: $spacing-2xl;
+    max-width: 1200px;
+
+    @include responsive(xs) {
+      padding-top: $spacing-lg;
+      padding-bottom: $spacing-lg;
+    }
+  }
+
+  .header {
+    @include flex-between;
+    align-items: flex-start;
+    margin-bottom: $spacing-xl;
+    gap: $spacing-lg;
+    padding: 0 $spacing-xs;
+
+    h1 {
+      font-size: $font-size-3xl;
+      font-weight: $font-weight-bold;
+      color: var(--text-primary);
+      margin: 0 0 $spacing-xs 0;
+      line-height: 1.2;
+
+      @include responsive(xs) {
+        font-size: $font-size-2xl;
+      }
+    }
+
+    p {
+      font-size: $font-size-base;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    @include responsive(xs) {
+      flex-direction: column;
+      align-items: stretch;
+      gap: $spacing-md;
+    }
+  }
+}
