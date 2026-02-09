@@ -1,0 +1,54 @@
+@use '../../../styles/abstracts/variables' as *;
+@use '../../../styles/abstracts/mixins' as *;
+
+.button {
+  @include button-base;
+  font-family: $font-family-base;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-1px);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  &.MuiButton-contained {
+    box-shadow: $shadow-sm;
+
+    &:hover {
+      box-shadow: $shadow-md;
+    }
+  }
+
+  &.MuiButton-containedPrimary {
+    background-color: $primary-color !important;
+
+    &:hover:not(:disabled) {
+      background-color: $primary-hover !important;
+    }
+  }
+
+  &.MuiButton-containedError {
+    background-color: $error-color !important;
+
+    &:hover:not(:disabled) {
+      background-color: #b91c1c !important;
+    }
+  }
+
+  &.MuiButton-outlined {
+    border-width: 1.5px;
+
+    &:hover:not(:disabled) {
+      border-width: 1.5px;
+      background-color: rgba($primary-color, 0.08);
+    }
+  }
+
+  &.MuiButton-text {
+    &:hover:not(:disabled) {
+      background-color: rgba($primary-color, 0.08);
+    }
+  }
+}

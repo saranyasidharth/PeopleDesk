@@ -1,0 +1,78 @@
+@use '../../../styles/abstracts/variables' as *;
+@use '../../../styles/abstracts/mixins' as *;
+
+.modal {
+  .MuiBackdrop-root {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+  }
+
+  .MuiPaper-root {
+    border-radius: $radius-xl;
+    box-shadow: $shadow-xl;
+    max-width: 600px;
+    width: 100%;
+    margin: $spacing-md;
+    background: var(--background-paper);
+
+    @include responsive(xs) {
+      margin: $spacing-sm;
+      max-width: calc(100vw - #{$spacing-md});
+    }
+  }
+
+  .modalTitle {
+    @include flex-between;
+    padding: $spacing-lg $spacing-xl;
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-xl;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
+
+    @include responsive(xs) {
+      padding: $spacing-md $spacing-lg;
+      font-size: $font-size-lg;
+    }
+  }
+
+  .closeButton {
+    margin-left: auto;
+    color: var(--text-secondary);
+    transition: all $transition-base;
+
+    &:hover {
+      color: var(--text-primary);
+      background-color: var(--surface-color);
+    }
+  }
+
+  .modalContent {
+    padding: $spacing-xl;
+    min-height: 200px;
+    max-height: calc(100vh - 300px);
+    overflow-y: auto;
+    @include custom-scrollbar;
+
+    @include responsive(xs) {
+      padding: $spacing-lg;
+      max-height: calc(100vh - 250px);
+    }
+  }
+
+  .modalActions {
+    @include flex-between;
+    padding: $spacing-md $spacing-xl;
+    border-top: 1px solid var(--border-color);
+    gap: $spacing-md;
+    background: var(--surface-color);
+
+    @include responsive(xs) {
+      padding: $spacing-md $spacing-lg;
+      flex-direction: column-reverse;
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+@use '../../../styles/abstracts/variables' as *;
+@use '../../../styles/abstracts/mixins' as *;
+
+.confirmDialog {
+  .MuiPaper-root {
+    border-radius: $radius-xl;
+    box-shadow: $shadow-xl;
+    background: var(--background-paper);
+    min-width: 400px;
+
+    @include responsive(xs) {
+      min-width: auto;
+      margin: $spacing-md;
+    }
+  }
+
+  .MuiDialogTitle-root {
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-xl;
+    color: var(--text-primary);
+    padding: $spacing-lg $spacing-xl;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .MuiDialogContent-root {
+    padding: $spacing-xl;
+    color: var(--text-secondary);
+    font-size: $font-size-base;
+    line-height: 1.6;
+  }
+
+  .MuiDialogActions-root {
+    padding: $spacing-md $spacing-xl;
+    gap: $spacing-md;
+    border-top: 1px solid var(--border-color);
+    background: var(--surface-color);
+
+    @include responsive(xs) {
+      flex-direction: column-reverse;
+
+      button {
+        width: 100%;
+        margin: 0;
+      }
+    }
+  }
+}

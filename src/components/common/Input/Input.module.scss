@@ -1,0 +1,81 @@
+@use '../../../styles/abstracts/variables' as *;
+@use '../../../styles/abstracts/mixins' as *;
+
+.input {
+  margin-bottom: $spacing-md;
+
+  .MuiInputLabel-root {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: var(--text-secondary);
+
+    &.Mui-focused {
+      color: $primary-color;
+    }
+
+    &.Mui-error {
+      color: $error-color;
+    }
+  }
+
+  .MuiOutlinedInput-root {
+    border-radius: $radius-md;
+    background: var(--background-paper);
+    transition: all $transition-base;
+    font-size: $font-size-base;
+
+    .MuiOutlinedInput-notchedOutline {
+      border-color: var(--border-color);
+      border-width: 1.5px;
+    }
+
+    &:hover:not(.Mui-disabled) {
+      .MuiOutlinedInput-notchedOutline {
+        border-color: $primary-light;
+      }
+    }
+
+    &.Mui-focused {
+      box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+
+      .MuiOutlinedInput-notchedOutline {
+        border-color: $primary-color;
+        border-width: 2px;
+      }
+    }
+
+    &.Mui-error {
+      .MuiOutlinedInput-notchedOutline {
+        border-color: $error-color;
+      }
+
+      &.Mui-focused {
+        box-shadow: 0 0 0 3px rgba($error-color, 0.1);
+      }
+    }
+
+    &.Mui-disabled {
+      background: var(--surface-color);
+      opacity: 0.7;
+    }
+
+    input {
+      padding: $spacing-sm $spacing-md;
+      color: var(--text-primary);
+
+      &::placeholder {
+        color: var(--text-tertiary);
+        opacity: 1;
+      }
+    }
+  }
+
+  .MuiFormHelperText-root {
+    margin-top: $spacing-xs;
+    font-size: $font-size-xs;
+
+    &.Mui-error {
+      color: $error-color;
+    }
+  }
+}
