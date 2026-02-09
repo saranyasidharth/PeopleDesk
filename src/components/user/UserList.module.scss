@@ -1,0 +1,42 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.userList {
+  @include flex-column;
+  gap: $spacing-lg;
+
+  .searchContainer {
+    @include flex-between;
+    gap: $spacing-md;
+    padding: $spacing-md;
+    background: var(--background-paper);
+    border-radius: $radius-lg;
+    box-shadow: $shadow-sm;
+
+    @include responsive(xs) {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
+  .paginationContainer {
+    @include flex-center;
+    padding: $spacing-lg 0;
+
+    .MuiPagination-root {
+      .MuiPaginationItem-root {
+        border-radius: $radius-md;
+        font-weight: $font-weight-medium;
+
+        &.Mui-selected {
+          background-color: $primary-color;
+          color: white;
+
+          &:hover {
+            background-color: $primary-hover;
+          }
+        }
+      }
+    }
+  }
+}

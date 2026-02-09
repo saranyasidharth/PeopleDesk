@@ -1,0 +1,141 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.tableWrapper {
+  @include card;
+  border: 1px solid var(--border-color);
+  overflow-x: auto;
+  @include custom-scrollbar;
+
+  @include responsive(xs) {
+    border-radius: $radius-md;
+  }
+}
+
+.tableContainer {
+  overflow: visible;
+
+  .MuiTable-root {
+    min-width: 650px;
+
+    @include responsive(xs) {
+      min-width: 100%;
+    }
+  }
+
+  .tableHeader {
+    background: var(--surface-color);
+
+    th {
+      font-weight: $font-weight-semibold;
+      font-size: $font-size-sm;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-secondary);
+      padding: $spacing-md $spacing-lg;
+      border-bottom: 2px solid var(--border-color);
+      white-space: nowrap;
+
+      &:first-child {
+        padding-left: $spacing-lg;
+      }
+
+      &:last-child {
+        padding-right: $spacing-lg;
+      }
+    }
+  }
+
+  .tableRow {
+    transition: background-color $transition-base;
+
+    &:hover {
+      background-color: var(--surface-color);
+    }
+
+    &:nth-of-type(even) {
+      background-color: rgba(0, 0, 0, 0.01);
+    }
+
+    &:last-child td {
+      border-bottom: none;
+    }
+
+    td {
+      padding: $spacing-md $spacing-lg;
+      font-size: $font-size-sm;
+      color: var(--text-primary);
+      border-bottom: 1px solid var(--border-color);
+
+      &:first-child {
+        padding-left: $spacing-lg;
+        font-weight: $font-weight-medium;
+      }
+
+      &:last-child {
+        padding-right: $spacing-lg;
+      }
+    }
+  }
+
+  .actions {
+    display: flex;
+    gap: $spacing-xs;
+    justify-content: flex-end;
+
+    .MuiIconButton-root {
+      padding: $spacing-sm;
+      border-radius: $radius-md;
+      transition: all $transition-base;
+
+      &.MuiIconButton-colorPrimary {
+        color: $primary-color;
+
+        &:hover {
+          background-color: rgba($primary-color, 0.1);
+        }
+      }
+
+      &.MuiIconButton-colorError {
+        color: $error-color;
+
+        &:hover {
+          background-color: rgba($error-color, 0.1);
+        }
+      }
+
+      svg {
+        font-size: 1.25rem;
+      }
+    }
+  }
+}
+
+.emptyState {
+  @include card;
+  @include flex-center;
+  padding: $spacing-3xl $spacing-lg;
+  text-align: center;
+  border: 1px solid var(--border-color);
+
+  .emptyStateContent {
+    @include flex-column;
+    align-items: center;
+    gap: $spacing-md;
+    max-width: 400px;
+  }
+
+  .emptyStateText {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .emptyStateSubtext {
+    font-size: $font-size-sm;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+  }
+}
